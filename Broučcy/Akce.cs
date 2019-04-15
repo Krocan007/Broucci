@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Broucy
 {
-    abstract class Akce
+    abstract public class Akce
     {
         abstract public void UpravBroucka(Brouk brouk);
     }
@@ -14,21 +14,69 @@ namespace Broucy
     {
         public override void UpravBroucka(Brouk brouk)
         {
-            throw new NotImplementedException();
+            switch (brouk.otoceni)
+            {
+                case Brouk.Otoceni.nahoru:
+                    brouk.otoceni = Brouk.Otoceni.doleva;
+                    break;
+                case Brouk.Otoceni.dolu:
+                    brouk.otoceni = Brouk.Otoceni.doprava;
+                    break;
+                case Brouk.Otoceni.doprava:
+                    brouk.otoceni = Brouk.Otoceni.dolu;
+                    break;
+                case Brouk.Otoceni.doleva:
+                    brouk.otoceni = Brouk.Otoceni.nahoru;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
     class OtocDoleva : Akce
     {
         public override void UpravBroucka(Brouk brouk)
         {
-            throw new NotImplementedException();
+            switch (brouk.otoceni)
+            {
+                case Brouk.Otoceni.nahoru:
+                    brouk.otoceni = Brouk.Otoceni.doprava;
+                    break;
+                case Brouk.Otoceni.dolu:
+                    brouk.otoceni = Brouk.Otoceni.doleva;
+                    break;
+                case Brouk.Otoceni.doprava:
+                    brouk.otoceni = Brouk.Otoceni.nahoru;
+                    break;
+                case Brouk.Otoceni.doleva:
+                    brouk.otoceni = Brouk.Otoceni.dolu;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
     class Jdi : Akce
     {
         public override void UpravBroucka(Brouk brouk)
         {
-            throw new NotImplementedException();
+            switch (brouk.otoceni)
+            {
+                case Brouk.Otoceni.nahoru:
+                    brouk.souradnice.y = (brouk.souradnice.y - 1)%brouk.mapa.rozmer;
+                    break;
+                case Brouk.Otoceni.dolu:
+                    brouk.souradnice.y = (brouk.souradnice.y + 1) % brouk.mapa.rozmer;
+                    break;
+                case Brouk.Otoceni.doprava:
+                    brouk.souradnice.x = (brouk.souradnice.x + 1) % brouk.mapa.rozmer;
+                    break;
+                case Brouk.Otoceni.doleva:
+                    brouk.souradnice.x = (brouk.souradnice.x - 1) % brouk.mapa.rozmer;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

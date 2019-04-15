@@ -8,21 +8,60 @@ namespace Broucy
 {
     public struct Souradnice
     {
-        int x, y;
+        public int x, y;
     }
-    class StavyAKroky
+    public class TabulkaPrikazu
     {
+        public TabulkaPrikazu(Prikaz [] prikazy)
+        {
+            this.prikazy = prikazy;
+        }
         public Prikaz VratPrikaz(int Stav)
         {
-            throw new NotImplementedException();
+            return prikazy [Stav];
         }
+        Prikaz[] prikazy;
     }
-    struct Prikaz
+    public class Prikaz
     {
-        Akce Kytka, Prazdno;
-        int NovyStavKytka, NovyStavPrazdno;
+        public Akce Kytka, Prazdno, Prekazka;
+        public int NovyStavKytka, NovyStavPrazdno, NovyStavPrekazka;
     }
     public class Mapa
     {
+
+        public Mapa(int n)
+        {
+            mapa = new Predmety[n, n];
+            this.rozmer = n;
+        }
+
+        public enum Predmety { Prazdno, Prekazka, Kytka };
+        private Predmety [,] mapa;
+        public int rozmer;
+
+        public Predmety this[Souradnice s]
+        {
+            get
+            {
+                return mapa[(s.x + rozmer) % rozmer, (s.y+rozmer) % rozmer];
+            }
+            set
+            {
+                mapa[(s.x + rozmer) % rozmer, (s.y+rozmer) % rozmer] = value;
+            }
+        }
+
+        public Predmety this[int x, int y]
+        {
+            get
+            {
+                return mapa[(x + rozmer) % rozmer, (y+rozmer) % rozmer];
+            }
+            set
+            {
+                mapa[(x + rozmer) % rozmer, (y+rozmer) % rozmer] = value;
+            }
+        }
     }
 }
