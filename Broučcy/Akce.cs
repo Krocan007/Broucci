@@ -62,7 +62,7 @@ namespace Broucy
             }
         }
     }
-    class Jdi : Akce
+    public class Jdi : Akce
     {
         public static Jdi Instance { get; } = new Jdi();
         private Jdi() { }
