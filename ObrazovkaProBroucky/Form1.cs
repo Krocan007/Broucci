@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Broucy;
 
 namespace ObrazovkaProBroucky
 {
@@ -15,14 +16,30 @@ namespace ObrazovkaProBroucky
         public Form1()
         {
             InitializeComponent();
-            obrazovka = new Obrazovka(pCanvas, TestData.VyrobBroukaSMapou());
         }
 
         Obrazovka obrazovka;
+        Mapa mapa;
+        Brouk brouk;
 
         private void BStart_Click(object sender, EventArgs e)
         {
+            bRestart.Text = "Restart";
 
+            MapaBrouk mb = TestData.VyrobBroukaSMapou();
+
+            mapa = mb.mapa;
+            brouk = mb.brouk;
+
+            obrazovka = new Obrazovka(pCanvas, mb);
+
+            bKrok.Enabled = true;
+        }
+
+        private void BKrok_Click(object sender, EventArgs e)
+        {
+            brouk.UdelejTah();
+            obrazovka.ObnovSe();
         }
     }
 }

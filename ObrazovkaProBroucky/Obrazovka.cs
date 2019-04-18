@@ -19,11 +19,6 @@ namespace ObrazovkaProBroucky
         }
     }
 
-    struct MapaBrouk
-    {
-        public Brouk brouk;
-        public Mapa mapa;
-    }
 
 
     class Obrazovka
@@ -59,9 +54,12 @@ namespace ObrazovkaProBroucky
         {
             for (int i = 0; i < predmetyNaMape.GetLength(0); i++)
                 for (int j = 0; j < predmetyNaMape.GetLength(1); j++)
+                {
                     predmetyNaMape[i, j] = VyrobLabel(i,j);
+                    AktualizujPolicko(i, j);
+                }
 
-            predmetyNaMape[brouk.souradnice.x, brouk.souradnice.y].BackColor = barvaBrouka;
+            AktualizujBrouka();
 
             canvas.Refresh();
         }
@@ -73,24 +71,66 @@ namespace ObrazovkaProBroucky
             novyLabel.Location = new Point(deltaX * x, deltaY * y);
             novyLabel.AutoSize = false;
             novyLabel.Size = new Size(deltaX, deltaY);
+            novyLabel.TextAlign = ContentAlignment.MiddleCenter;
 
-            switch (mapa[x,y])
+            return novyLabel;
+        }
+
+        private void AktualizujPolicko(int x, int y)
+        {
+            predmetyNaMape[x, y].Text = "";
+
+            switch (mapa[x, y])
             {
                 case Mapa.Predmety.Prazdno:
-                    novyLabel.BackColor = prazdno;
+                    predmetyNaMape[x,y].BackColor = prazdno;
                     break;
                 case Mapa.Predmety.Prekazka:
-                    novyLabel.BackColor = prekazka;
+                    predmetyNaMape[x,y].BackColor = prekazka;
                     break;
                 case Mapa.Predmety.Kytka:
-                    novyLabel.BackColor = kytka;
+                    predmetyNaMape[x,y].BackColor = kytka;
                     break;
                 default:
                     throw new NotImplementedException();
             }
-
-            return novyLabel;
         }
+
+        private void AktualizujBrouka()
+        {
+            Label broukLabel = predmetyNaMape[brouk.souradnice.x, brouk.souradnice.y];
+            broukLabel.BackColor = barvaBrouka;
+
+            switch (brouk.otoceni)
+            {
+                case Brouk.Otoceni.nahoru:
+                    broukLabel.Text = "^";
+                    break;
+                case Brouk.Otoceni.dolu:
+                    broukLabel.Text = "v";
+                    break;
+                case Brouk.Otoceni.doprava:
+                    broukLabel.Text = ">";
+                    break;
+                case Brouk.Otoceni.doleva:
+                    broukLabel.Text = "<";
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        public void ObnovSe()
+        {
+            for (int i = 0; i < predmetyNaMape.GetLength(0); i++)
+                for (int j = 0; j < predmetyNaMape.GetLength(1); j++)
+                    AktualizujPolicko(i, j);
+
+            AktualizujBrouka();
+
+            canvas.Refresh();
+        }
+
 
     }
 }
