@@ -12,6 +12,9 @@ namespace Broucy
     }
     class OtocDoprava : Akce
     {
+        public static OtocDoprava Instance { get; } = new OtocDoprava();
+        private OtocDoprava() { }
+
         public override void UpravBroucka(Brouk brouk)
         {
             switch (brouk.otoceni)
@@ -35,6 +38,9 @@ namespace Broucy
     }
     class OtocDoleva : Akce
     {
+        public static OtocDoleva Instance { get; } = new OtocDoleva();
+        private OtocDoleva() { }
+
         public override void UpravBroucka(Brouk brouk)
         {
             switch (brouk.otoceni)
@@ -58,6 +64,9 @@ namespace Broucy
     }
     class Jdi : Akce
     {
+        public static Jdi Instance { get; } = new Jdi();
+        private Jdi() { }
+
         public override void UpravBroucka(Brouk brouk)
         {
             switch (brouk.otoceni)
