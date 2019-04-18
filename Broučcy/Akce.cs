@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Broucy
 {
-    abstract public class Akce
+    public abstract class Akce
     {
         abstract public void UpravBroucka(Brouk brouk);
     }
-    class OtocDoprava : Akce
+    public class OtocDoprava : Akce
     {
         public static OtocDoprava Instance { get; } = new OtocDoprava();
         private OtocDoprava() { }
@@ -36,7 +36,7 @@ namespace Broucy
             }
         }
     }
-    class OtocDoleva : Akce
+    public class OtocDoleva : Akce
     {
         public static OtocDoleva Instance { get; } = new OtocDoleva();
         private OtocDoleva() { }
