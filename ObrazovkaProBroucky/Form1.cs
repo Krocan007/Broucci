@@ -15,6 +15,14 @@ namespace ObrazovkaProBroucky
         public Form1()
         {
             InitializeComponent();
+            obrazovka = new Obrazovka(pCanvas, TestData.VyrobBroukaSMapou());
+        }
+
+        Obrazovka obrazovka;
+
+        private void BStart_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

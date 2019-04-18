@@ -35,7 +35,6 @@
             // 
             // pCanvas
             // 
-            this.pCanvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pCanvas.Location = new System.Drawing.Point(26, 34);
             this.pCanvas.Name = "pCanvas";
             this.pCanvas.Size = new System.Drawing.Size(700, 700);
@@ -49,6 +48,7 @@
             this.bStart.TabIndex = 1;
             this.bStart.Text = "Start";
             this.bStart.UseVisualStyleBackColor = true;
+            this.bStart.Click += new System.EventHandler(this.BStart_Click);
             // 
             // bKrok
             // 
