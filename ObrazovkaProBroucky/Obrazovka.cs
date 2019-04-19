@@ -56,7 +56,7 @@ namespace ObrazovkaProBroucky
                 for (int j = 0; j < predmetyNaMape.GetLength(1); j++)
                     predmetyNaMape[i, j] = VyrobLabel(i,j);
 
-            ObnovSe();
+            ObnovSeKompletne();
         }
 
         private Label VyrobLabel(int x, int y)
@@ -115,16 +115,27 @@ namespace ObrazovkaProBroucky
             }
         }
 
-        public void ObnovSe()
+        public void ObnovSeKompletne()
         {
             for (int i = 0; i < predmetyNaMape.GetLength(0); i++)
                 for (int j = 0; j < predmetyNaMape.GetLength(1); j++)
                     AktualizujPolicko(i, j);
 
             AktualizujBrouka();
+            puvodniUmisteniBrouka = brouk.souradnice;
 
             canvas.Refresh();
         }
+
+        private Souradnice puvodniUmisteniBrouka;
+        public void ObnovJenomBrouka()
+        {
+            AktualizujPolicko(puvodniUmisteniBrouka.x, puvodniUmisteniBrouka.y);
+            AktualizujBrouka();
+            puvodniUmisteniBrouka = brouk.souradnice;
+        }
+
+
 
         public void NactiNovouMapuStejneVelikostiABrouka(MapaBrouk mb)
         {
@@ -134,7 +145,7 @@ namespace ObrazovkaProBroucky
             mapa = mb.mapa;
             brouk = mb.brouk;
 
-            ObnovSe();
+            ObnovSeKompletne();
         }
 
     }

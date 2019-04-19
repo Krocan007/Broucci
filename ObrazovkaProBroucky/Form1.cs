@@ -42,7 +42,7 @@ namespace ObrazovkaProBroucky
         private void BKrok_Click(object sender, EventArgs e)
         {
             brouk.UdelejTah();
-            obrazovka.ObnovSe();
+            obrazovka.ObnovJenomBrouka();
         }
     }
 }
