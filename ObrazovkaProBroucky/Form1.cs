@@ -37,12 +37,30 @@ namespace ObrazovkaProBroucky
                 obrazovka.NactiNovouMapuStejneVelikostiABrouka(mb);
 
             bKrok.Enabled = true;
+            bPeriodickeKroky.Enabled = true;
         }
 
         private void BKrok_Click(object sender, EventArgs e)
         {
             brouk.UdelejTah();
             obrazovka.ObnovJenomBrouka();
+        }
+
+
+        private void BPeriodickeKroky_Click(object sender, EventArgs e)
+        {
+            timer.Interval = (int)nMiliseconds.Value;
+            timer.Enabled = timer.Enabled ^ true;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            BKrok_Click(sender, e);
+        }
+
+        private void NMiliseconds_ValueChanged(object sender, EventArgs e)
+        {
+            timer.Interval = (int)nMiliseconds.Value;
         }
     }
 }
