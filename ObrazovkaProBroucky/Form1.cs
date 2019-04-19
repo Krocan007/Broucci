@@ -31,7 +31,10 @@ namespace ObrazovkaProBroucky
             mapa = mb.mapa;
             brouk = mb.brouk;
 
-            obrazovka = new Obrazovka(pCanvas, mb);
+            if (obrazovka == null)
+                obrazovka = new Obrazovka(pCanvas, mb);
+            else
+                obrazovka.NactiNovouMapuStejneVelikostiABrouka(mb);
 
             bKrok.Enabled = true;
         }

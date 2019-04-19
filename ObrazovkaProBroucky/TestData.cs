@@ -48,7 +48,7 @@ namespace ObrazovkaProBroucky
 
             TabulkaPrikazu tabulka = new TabulkaPrikazu(new Prikaz[] { prvni, druhy });
 
-            Mapa novaMapa = new Mapa(10);
+            Mapa novaMapa = new Mapa(20);
             novaMapa[3, 3] = Mapa.Predmety.Prekazka;
             novaMapa[3, 2] = Mapa.Predmety.Prekazka;
             novaMapa[3, 1] = Mapa.Predmety.Prekazka;

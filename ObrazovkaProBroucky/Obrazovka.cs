@@ -54,14 +54,9 @@ namespace ObrazovkaProBroucky
         {
             for (int i = 0; i < predmetyNaMape.GetLength(0); i++)
                 for (int j = 0; j < predmetyNaMape.GetLength(1); j++)
-                {
                     predmetyNaMape[i, j] = VyrobLabel(i,j);
-                    AktualizujPolicko(i, j);
-                }
 
-            AktualizujBrouka();
-
-            canvas.Refresh();
+            ObnovSe();
         }
 
         private Label VyrobLabel(int x, int y)
@@ -131,6 +126,18 @@ namespace ObrazovkaProBroucky
             canvas.Refresh();
         }
 
+        public void NactiNovouMapuStejneVelikostiABrouka(MapaBrouk mb)
+        {
+            if (mapa.rozmer != mb.mapa.rozmer)
+                throw new MapyRuznychVelikostiException();
+
+            mapa = mb.mapa;
+            brouk = mb.brouk;
+
+            ObnovSe();
+        }
 
     }
+
+    class MapyRuznychVelikostiException : Exception { }
 }
