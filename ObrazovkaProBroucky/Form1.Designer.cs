@@ -131,7 +131,7 @@
             this.Controls.Add(this.bRestart);
             this.Controls.Add(this.pCanvas);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Broučkúf svjet";
             ((System.ComponentModel.ISupportInitialize)(this.nMiliseconds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
