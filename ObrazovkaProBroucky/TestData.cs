@@ -22,32 +22,34 @@ namespace ObrazovkaProBroucky
         //Velikost mapy si muzes zvolit, automaticky se to nastavi jak potrebujes - predpokladam, jedine co urcuje rozmerry mapy je promena rozmer
         public static MapaBrouk VyrobBroukaSMapou()
         {
-            Prikaz prvni = new Prikaz()
-            {
-                Kytka = Jdi.Instance,
-                NovyStavKytka = 0,
+            // Prikaz prvni = new Prikaz()
+            // {
+            //     Kytka = Jdi.Instance,
+            //     NovyStavKytka = 0,
+            //
+            //     Prekazka = OtocDoprava.Instance,
+            //     NovyStavPrekazka = 1,
+            //
+            //     Prazdno = Jdi.Instance,
+            //     NovyStavPrazdno = 1
+            // };
+            //
+            // Prikaz druhy = new Prikaz()
+            // {
+            //     Kytka = Jdi.Instance,
+            //     NovyStavKytka = 0,
+            //
+            //     Prekazka = OtocDoprava.Instance,
+            //     NovyStavPrekazka = 1,
+            //
+            //     Prazdno = Jdi.Instance,
+            //     NovyStavPrazdno = 1
+            // };
+            //
+            // TabulkaPrikazu tabulka = new TabulkaPrikazu(new Prikaz[] { prvni, druhy });
 
-                Prekazka = OtocDoprava.Instance,
-                NovyStavPrekazka = 1,
-
-                Prazdno = Jdi.Instance,
-                NovyStavPrazdno = 1
-            };
-
-            Prikaz druhy = new Prikaz()
-            {
-                Kytka = Jdi.Instance,
-                NovyStavKytka = 0,
-
-                Prekazka = OtocDoprava.Instance,
-                NovyStavPrekazka = 1,
-
-                Prazdno = Jdi.Instance,
-                NovyStavPrazdno = 1
-            };
-
-            TabulkaPrikazu tabulka = new TabulkaPrikazu(new Prikaz[] { prvni, druhy });
-
+            Generátor G = new Generátor(10);
+            TabulkaPrikazu tabulka = G.VytvorNahodnouTabulku();
             Mapa novaMapa = new Mapa(20);
             novaMapa[3, 3] = Mapa.Predmety.Prekazka;
             novaMapa[3, 2] = Mapa.Predmety.Prekazka;

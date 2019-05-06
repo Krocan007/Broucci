@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Akce.cs" />
     <Compile Include="Brouk.cs" />
+    <Compile Include="Generátor.cs" />
     <Compile Include="Mapa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
