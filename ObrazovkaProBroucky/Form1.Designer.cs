@@ -48,7 +48,7 @@
             // 
             // bRestart
             // 
-            this.bRestart.Location = new System.Drawing.Point(807, 178);
+            this.bRestart.Location = new System.Drawing.Point(807, 187);
             this.bRestart.Name = "bRestart";
             this.bRestart.Size = new System.Drawing.Size(438, 123);
             this.bRestart.TabIndex = 1;
