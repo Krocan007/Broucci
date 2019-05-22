@@ -21,6 +21,7 @@ namespace Broucy
         public Otoceni otoceni { get; internal set; }
         internal int stav;
         private TabulkaPrikazu TabulkaPrikazu;
+        public int SezranejchKytek;
 
         public void UdelejTah()
         {
@@ -29,15 +30,16 @@ namespace Broucy
             switch (predmet)
             {
                 case Mapa.Predmety.Prazdno:
-                    p.Prazdno.UpravBroucka(this);
+                    p.Prazdno.UpravBroucka(this,predmet);
                     stav = p.NovyStavPrazdno;
                     break;
                 case Mapa.Predmety.Prekazka:
-                    p.Prekazka.UpravBroucka(this);
+                    p.Prekazka.UpravBroucka(this,predmet);
                     stav = p.NovyStavPrekazka;
                     break;
                 case Mapa.Predmety.Kytka:
-                    p.Kytka.UpravBroucka(this);
+                    p.Kytka.UpravBroucka(this,predmet);
+                    mapa[souradnice.x, souradnice.y] = Mapa.Predmety.Prazdno;
                     stav = p.NovyStavKytka;
                     break;
                 default:

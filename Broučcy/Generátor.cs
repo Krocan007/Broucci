@@ -11,7 +11,7 @@ namespace Broucy
         public Generátor(int n)
         {
             this.VelikostTabulky = n;
-            RND = new Random(42);
+            RND = new Random();
             VsechnyAkce = new Akce[]{ Jdi.Instance, OtocDoleva.Instance, OtocDoprava.Instance };
         }
         int VelikostTabulky;
@@ -33,5 +33,7 @@ namespace Broucy
             }
             return new TabulkaPrikazu(PolePrikazu);
         }
+
+
     }
 }

@@ -55,6 +55,7 @@ namespace ObrazovkaProBroucky
             novaMapa[3, 2] = Mapa.Predmety.Prekazka;
             novaMapa[3, 1] = Mapa.Predmety.Prekazka;
             novaMapa[3, 0] = Mapa.Predmety.Prekazka;
+            novaMapa[1, 0] = Mapa.Predmety.Kytka;
 
             Brouk novyBrouk = new Brouk(novaMapa, new Souradnice() { x = 0, y = 0 }, Brouk.Otoceni.doprava, tabulka);
 
