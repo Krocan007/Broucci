@@ -33,5 +33,7 @@ namespace Broucy
             }
             return new TabulkaPrikazu(PolePrikazu);
         }
+
+
     }
 }

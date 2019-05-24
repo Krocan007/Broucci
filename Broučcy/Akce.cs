@@ -8,14 +8,14 @@ namespace Broucy
 {
     public abstract class Akce
     {
-        abstract public void UpravBroucka(Brouk brouk);
+        abstract public void UpravBroucka(Brouk brouk, Mapa.Predmety predmet);
     }
     public class OtocDoprava : Akce
     {
         public static OtocDoprava Instance { get; } = new OtocDoprava();
         private OtocDoprava() { }
 
-        public override void UpravBroucka(Brouk brouk)
+        public override void UpravBroucka(Brouk brouk, Mapa.Predmety predmet)
         {
             switch (brouk.otoceni)
             {
@@ -41,7 +41,7 @@ namespace Broucy
         public static OtocDoleva Instance { get; } = new OtocDoleva();
         private OtocDoleva() { }
 
-        public override void UpravBroucka(Brouk brouk)
+        public override void UpravBroucka(Brouk brouk,Mapa.Predmety predmet)
         {
             switch (brouk.otoceni)
             {
@@ -67,25 +67,56 @@ namespace Broucy
         public static Jdi Instance { get; } = new Jdi();
         private Jdi() { }
 
-        public override void UpravBroucka(Brouk brouk)
+        public override void UpravBroucka(Brouk brouk, Mapa.Predmety predmet)
+
         {
-            switch (brouk.otoceni)
+            switch (predmet)
             {
-                case Brouk.Otoceni.nahoru:
-                    brouk.souradnice.y = (brouk.souradnice.y - 1)%brouk.mapa.rozmer;
+                case Mapa.Predmety.Prekazka:
                     break;
-                case Brouk.Otoceni.dolu:
-                    brouk.souradnice.y = (brouk.souradnice.y + 1) % brouk.mapa.rozmer;
+                case Mapa.Predmety.Prazdno:
+                    switch (brouk.otoceni)
+                    {
+                        case Brouk.Otoceni.nahoru:
+                            brouk.souradnice.y = ((brouk.souradnice.y - brouk.mapa.rozmer) % brouk.mapa.rozmer) + brouk.mapa.rozmer - 1;
+                            break;
+                        case Brouk.Otoceni.dolu:
+                            brouk.souradnice.y = (brouk.souradnice.y + 1) % brouk.mapa.rozmer;
+                            break;
+                        case Brouk.Otoceni.doprava:
+                            brouk.souradnice.x = (brouk.souradnice.x + 1) % brouk.mapa.rozmer;
+                            break;
+                        case Brouk.Otoceni.doleva:
+                            brouk.souradnice.x = (brouk.souradnice.x - brouk.mapa.rozmer) % brouk.mapa.rozmer + brouk.mapa.rozmer - 1;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
                     break;
-                case Brouk.Otoceni.doprava:
-                    brouk.souradnice.x = (brouk.souradnice.x + 1) % brouk.mapa.rozmer;
-                    break;
-                case Brouk.Otoceni.doleva:
-                    brouk.souradnice.x = (brouk.souradnice.x - 1) % brouk.mapa.rozmer;
+                case Mapa.Predmety.Kytka:
+                    brouk.SezranejchKytek += 1;
+                    switch (brouk.otoceni)
+                    {
+                        case Brouk.Otoceni.nahoru:
+                            brouk.souradnice.y = ((brouk.souradnice.y - brouk.mapa.rozmer) % brouk.mapa.rozmer) + brouk.mapa.rozmer - 1;
+                            break;
+                        case Brouk.Otoceni.dolu:
+                            brouk.souradnice.y = (brouk.souradnice.y + 1) % brouk.mapa.rozmer;
+                            break;
+                        case Brouk.Otoceni.doprava:
+                            brouk.souradnice.x = (brouk.souradnice.x + 1) % brouk.mapa.rozmer;
+                            break;
+                        case Brouk.Otoceni.doleva:
+                            brouk.souradnice.x = (brouk.souradnice.x - brouk.mapa.rozmer) % brouk.mapa.rozmer + brouk.mapa.rozmer - 1;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
                     break;
                 default:
                     throw new NotImplementedException();
             }
+            
         }
     }
 }
